@@ -1,0 +1,349 @@
+{
+  "version": 1,
+  "approved_on": "2026-10-25",
+  "sources": ["themes/proposed_run1.json", "themes/proposed_run2.json"],
+  "notes": "A review can belong to more than one theme. Example ids come from the proposal slices, never from eval/eval_ids.json.",
+  "themes": [
+    {
+      "id": "general_praise",
+      "name": "General praise and everyday usefulness",
+      "definition": "Enthusiastic, mostly generic positive reviews describing the app as great, helpful, a game-changer or a daily companion for varied tasks, work and personal use.",
+      "includes": [
+        "overall 'best app' praise",
+        "helps with work, business, writing, recipes, ideas",
+        "personal assistant or companion feel",
+        "better than Google",
+        "praise for fast or smooth responses",
+        "convenience of having the app on the phone",
+        "free version being generous or no ads",
+        "thanks to developers"
+      ],
+      "excludes": [
+        "study or homework-specific praise",
+        "praise paired with a specific bug or feature request"
+      ],
+      "example_ids": [
+        "53125d34-0269-4559-92e4-000b9066bdf3",
+        "249358fd-8666-4522-95bd-3e35a70ee558",
+        "503dc677-478c-4d2e-977c-259bb9572828"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["General praise and everyday assistant use"],
+        "2": ["General praise and everyday usefulness"]
+      }
+    },
+    {
+      "id": "education",
+      "name": "Education and homework help",
+      "definition": "Reviews about using ChatGPT for studying, homework, research, exam prep, learning new skills or languages, or as a personal tutor.",
+      "includes": [
+        "students praising homework help",
+        "exam prep such as IIT JEE",
+        "learning new topics, skills or languages",
+        "coding and learning help",
+        "easy-to-understand explanations"
+      ],
+      "excludes": [
+        "general praise with no learning use case",
+        "complaints about wrong answers in school subjects",
+        "math formatting problems"
+      ],
+      "example_ids": [
+        "daa9503e-0f4c-4c06-81a1-52238f47025b",
+        "1f9e62b4-e2ee-4618-bfe5-26c9c9ffd117",
+        "12e46e60-4e2f-409b-970d-25857b68673f"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Praise for study and learning help"],
+        "2": ["Education and homework help"]
+      }
+    },
+    {
+      "id": "login_account",
+      "name": "Login, sign-up and account problems",
+      "definition": "Difficulty signing in, signing up, staying logged in, verifying identity, or recovering or deleting accounts.",
+      "includes": [
+        "cannot log in, login loops or stuck screens",
+        "'install Chrome' or unsupported-browser sign-in error",
+        "phone number verification rejected",
+        "phone number or birth date requirements",
+        "human verification loops",
+        "account deletion or recovery issues",
+        "hacked or compromised accounts"
+      ],
+      "excludes": [
+        "crashes or errors after login",
+        "billing problems",
+        "privacy objections to data collection"
+      ],
+      "example_ids": [
+        "19240150-a479-4ad8-ba51-6544b9da6bbf",
+        "121b5dec-1959-4210-bd49-4d478cc83e64",
+        "17b266ce-e17d-4132-8da1-a08616a7e3ac"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Login, sign-up and account problems"],
+        "2": ["Login, signup and account access problems"]
+      }
+    },
+    {
+      "id": "crashes_errors",
+      "name": "Crashes, errors and connectivity",
+      "definition": "The app not working reliably: crashing, freezing, not opening, showing error messages, losing connection, stopping mid-response, or being slow and laggy.",
+      "includes": [
+        "crashes on open or app closing by itself",
+        "infinite loading or app not opening",
+        "freezes mid-use",
+        "'request is not allowed', 'try again later' or 'request is invalid' errors",
+        "false network or connection errors despite good connection",
+        "stopping responses mid-chat",
+        "service suddenly stopped working",
+        "slowness and lag, including slow typing or slow scrolling in long chats"
+      ],
+      "excludes": [
+        "login-specific failures",
+        "voice-specific bugs",
+        "layout or design complaints with no failure or slowness"
+      ],
+      "example_ids": [
+        "695e9e0b-52fd-466c-86b7-45071bf3dcdd",
+        "096190da-d92e-4811-b164-72468fad8ff4",
+        "21e668c5-0138-483b-9e6c-aa850d32fe99"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Crashes, freezing and app won't open", "Error messages and connectivity failures"],
+        "2": ["App errors, crashes and unreliability", "Performance, interface and chat history behavior (slowness only)"]
+      }
+    },
+    {
+      "id": "answer_quality",
+      "name": "Wrong, unreliable or outdated answers",
+      "definition": "Complaints that responses are factually wrong, hallucinated, inconsistent, poor at following instructions, or based on outdated training data (e.g. a 2021 or 2022 cutoff).",
+      "includes": [
+        "factual and scientific errors",
+        "knowledge cutoff complaints",
+        "wrong math or equation answers",
+        "buggy generated code",
+        "failure to follow instructions",
+        "forgetting earlier context in a chat",
+        "model feels dumber",
+        "advice to verify outputs"
+      ],
+      "excludes": [
+        "math rendering or formatting issues",
+        "bias or censorship complaints",
+        "praise for accurate answers"
+      ],
+      "example_ids": [
+        "e1f298e6-be95-45ca-a3ca-ab4b0362deef",
+        "19bec943-14f1-48c8-a3ca-abeabb252932",
+        "eddd4589-1479-4b15-b542-334181a7b5b2"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Outdated knowledge and inaccurate answers"],
+        "2": ["Wrong, unreliable or outdated answers"]
+      }
+    },
+    {
+      "id": "bias_censorship_privacy",
+      "name": "Bias, censorship and privacy concerns",
+      "definition": "Objections to perceived political, religious or ideological bias, over-restrictive or preachy content policies, offensive content about groups, and data collection or privacy practices.",
+      "includes": [
+        "over-censorship and refusals to answer",
+        "perceived political or ideological bias",
+        "religious bias or offensive content about religions or groups",
+        "AI lecturing the user",
+        "personal data collection",
+        "phone number demands as privacy invasion"
+      ],
+      "excludes": [
+        "ordinary factual mistakes",
+        "login technical failures"
+      ],
+      "example_ids": [
+        "3a8c43fd-7f1c-4d32-9797-8ee911543d61",
+        "15956774-3381-4417-b2ed-da29e5a413b7",
+        "be5efb78-1140-4f4d-b518-c4b64acfde38"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Bias, censorship and privacy concerns"],
+        "2": ["Censorship, bias and content moderation"]
+      }
+    },
+    {
+      "id": "missing_features",
+      "name": "Missing features compared with the web version",
+      "definition": "Requests for features the website has but the Android app lacks, or other functionality users expect, and complaints that the app is less capable than the browser version.",
+      "includes": [
+        "edit previous prompt",
+        "stop generation button",
+        "copy or select text",
+        "search within or across chats",
+        "chat organization (folders, delete multiple, favorites)",
+        "plugins, code interpreter and beta features",
+        "camera or image input",
+        "web version is better"
+      ],
+      "excludes": [
+        "image generation requests",
+        "voice feature issues",
+        "existing features that display or behave badly (UI)"
+      ],
+      "example_ids": [
+        "4aeb5a70-2315-4d44-a08f-36e445595a93",
+        "11640cc9-f5ef-48c9-89a3-8d828469dd64",
+        "c5f0de04-ab98-4abb-9be6-1600b826bbff"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Missing features vs web version"],
+        "2": ["Missing features compared with the web version"]
+      }
+    },
+    {
+      "id": "image_multimodal",
+      "name": "Image generation and multimodal requests",
+      "definition": "Requests or complaints about creating, showing or understanding images, documents and other media.",
+      "includes": [
+        "wanting image generation",
+        "image generation locked behind paywall",
+        "poor image results",
+        "photo upload limits",
+        "convert document photos to text",
+        "wanting images, flowcharts, music or video in answers"
+      ],
+      "excludes": [
+        "voice features",
+        "text-based accuracy complaints"
+      ],
+      "example_ids": [
+        "c1dc9196-66dc-4bf2-b3f8-00d0d1465ffa",
+        "cf6cc6c8-f87c-46fe-ba49-9cb73108fb9c",
+        "a13b860c-30d7-4d2b-b079-64a7565ef27b"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Image generation and multimodal requests"],
+        "2": ["Image generation and multimodal requests"]
+      }
+    },
+    {
+      "id": "voice",
+      "name": "Voice chat and audio",
+      "definition": "Feedback on voice conversation, speech recognition, text-to-speech and read-aloud: quality, language recognition, volume, cut-offs and availability, both praise and bugs.",
+      "includes": [
+        "poor audio quality or low in-call volume",
+        "wrong language recognition",
+        "voice cuts user off",
+        "microphone or voice not detected",
+        "wrong voice or audio output route",
+        "read-aloud bugs or missing voice transcript",
+        "voice feature missing or locked",
+        "praise for voice conversation"
+      ],
+      "excludes": [
+        "general crashes unrelated to voice",
+        "requests for non-voice features"
+      ],
+      "example_ids": [
+        "d6f35c59-e532-4beb-a631-8e7bc7bfe24d",
+        "1531b81e-ef8f-4efd-8492-7d0ecad57396",
+        "c625b2b7-4654-43f1-abaa-bee778fee9f2"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Voice chat and audio issues"],
+        "2": ["Voice chat and read-aloud issues"]
+      }
+    },
+    {
+      "id": "pricing_limits",
+      "name": "Pricing, subscription and usage limits",
+      "definition": "Feedback about subscription cost and value, billing problems, regional affordability, paywalled features, message caps and model switching on paid or free plans.",
+      "includes": [
+        "subscription too expensive, including for my country",
+        "payment methods unavailable",
+        "auto-renewal or billing issues",
+        "Plus not showing after purchase",
+        "GPT-4 or GPT-4o message limits and free plan limits",
+        "being switched or defaulted to an older model",
+        "features locked behind payment"
+      ],
+      "excludes": [
+        "general praise that mentions the app being free"
+      ],
+      "example_ids": [
+        "249fd36f-f4e5-49ce-8a27-8cbb030749bc",
+        "d7e23239-7da7-491e-96fe-f52443a2ee51",
+        "cc26a363-5c8e-47ab-a24d-0698ac34110a"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Pricing, subscription and usage limits"],
+        "2": ["Pricing, subscription and paywall"]
+      }
+    },
+    {
+      "id": "ui_ux",
+      "name": "UI, UX and accessibility",
+      "definition": "Issues with how the Android interface looks and behaves: layout, scrolling, keyboard, theming, accessibility, chat history behavior, and how math and formulas are rendered.",
+      "includes": [
+        "minimal or awkward UI design",
+        "Material You theming",
+        "scroll and auto-scroll problems",
+        "keyboard hides text",
+        "TalkBack accessibility",
+        "chat history not loading, syncing, disappearing or hard to navigate",
+        "raw LaTeX shown instead of symbols, unreadable formulas"
+      ],
+      "excludes": [
+        "slowness or lag (Crashes, errors and connectivity)",
+        "crashes",
+        "missing functional features",
+        "wrong math answers (Wrong, unreliable or outdated answers)"
+      ],
+      "example_ids": [
+        "1d0859ed-f3a9-4df3-967c-4e0de5c57715",
+        "a1ed986f-1aa5-4604-b1db-e68ff92e2fe1",
+        "c081ccac-226e-44f8-835c-a9a85344a5c8"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["UI, UX and accessibility complaints"],
+        "2": ["Performance, interface and chat history behavior (interface and chat history)", "Math, LaTeX and formula rendering"]
+      }
+    },
+    {
+      "id": "other",
+      "name": "Other",
+      "definition": "Reviews that fit no other theme, such as vague, off-topic or non-substantive comments, and requests for non-English language or regional support.",
+      "includes": [
+        "off-topic remarks",
+        "unclear or incomprehensible text",
+        "no experience yet",
+        "conspiracy claims",
+        "non-English language support or replies in the wrong language"
+      ],
+      "excludes": [
+        "anything clearly matching another theme",
+        "regional pricing complaints (Pricing, subscription and usage limits)"
+      ],
+      "example_ids": [
+        "b950f73e-859d-4729-9961-f17f318d3392",
+        "f645d819-8e67-475d-886d-a55460604969",
+        "c5adf300-8fc5-48df-b16b-19ab4c443393"
+      ],
+      "source_runs": [1, 2],
+      "source_themes": {
+        "1": ["Other", "Language and regional support"],
+        "2": ["Other"]
+      }
+    }
+  ]
+}
