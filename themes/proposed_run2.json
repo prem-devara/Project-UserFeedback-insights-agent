@@ -1,0 +1,464 @@
+{
+  "run": 2,
+  "model": "anthropic:claude-sonnet-5-5",
+  "seed": 43,
+  "created_at": "2026-10-26T03:08:23+00:00",
+  "slice_size": 200,
+  "slice_by_band": {
+    "low": 67,
+    "mid": 67,
+    "high": 66
+  },
+  "themes": [
+    {
+      "name": "General praise and everyday usefulness",
+      "definition": "Enthusiastic, mostly generic positive reviews describing the app as great, helpful, a game-changer or a daily companion for varied tasks, work and personal use.",
+      "includes": [
+        "overall 'best app' praise",
+        "helps with work, business, writing, recipes, ideas",
+        "convenience of having the app on the phone",
+        "free version being generous or no ads"
+      ],
+      "excludes": [
+        "study or homework-specific praise",
+        "specific bug or feature complaints"
+      ],
+      "example_ids": [
+        "53125d34-0269-4559-92e4-000b9066bdf3",
+        "67df565f-d8c7-4c21-b12a-1066583dc4e3",
+        "503dc677-478c-4d2e-977c-259bb9572828"
+      ]
+    },
+    {
+      "name": "Education and homework help",
+      "definition": "Reviews about using ChatGPT for studying, homework, exam prep, learning languages or as a personal tutor.",
+      "includes": [
+        "students praising homework help",
+        "exam prep such as IIT JEE",
+        "learning new topics or languages",
+        "easy-to-understand explanations"
+      ],
+      "excludes": [
+        "complaints about wrong answers in school subjects",
+        "math formatting problems"
+      ],
+      "example_ids": [
+        "daa9503e-0f4c-4c06-81a1-52238f47025b",
+        "12e46e60-4e2f-409b-970d-25857b68673f",
+        "c1da59d6-96c4-4090-988e-3334bbb77fdc"
+      ]
+    },
+    {
+      "name": "Login, signup and account access problems",
+      "definition": "Difficulty signing in, signing up, staying logged in, verifying accounts, or recovering/deleting accounts.",
+      "includes": [
+        "login loops or stuck screens",
+        "'install Chrome' sign-in error",
+        "phone number or birth date requirements",
+        "account deletion/recovery issues",
+        "hacked or compromised accounts"
+      ],
+      "excludes": [
+        "general runtime errors after login",
+        "billing problems"
+      ],
+      "example_ids": [
+        "121b5dec-1959-4210-bd49-4d478cc83e64",
+        "cfa4f76f-f058-43bf-b2b4-3c4dbf825bc8",
+        "d0b1d12a-de2d-4a94-8966-bfe15d5b091e"
+      ]
+    },
+    {
+      "name": "App errors, crashes and unreliability",
+      "definition": "The app not working, showing error messages, crashing, closing itself, losing connection or stopping responding.",
+      "includes": [
+        "'try again later' or 'request is invalid' errors",
+        "false network or connection errors",
+        "app closing automatically after update",
+        "stopping responses mid-chat"
+      ],
+      "excludes": [
+        "login-specific failures",
+        "voice-specific bugs"
+      ],
+      "example_ids": [
+        "21e668c5-0138-483b-9e6c-aa850d32fe99",
+        "6661ab20-ac79-4d47-bb4f-31acec082d67",
+        "c91205dc-b083-42e3-a016-aa074910d9ec"
+      ]
+    },
+    {
+      "name": "Wrong, unreliable or outdated answers",
+      "definition": "Complaints that responses are factually wrong, hallucinated, poor at following instructions, or based on outdated training data (e.g. 2021 or 2022 cutoff).",
+      "includes": [
+        "factual and scientific errors",
+        "knowledge cutoff complaints",
+        "failure to follow instructions",
+        "forgetting earlier context in a chat",
+        "advice to verify outputs"
+      ],
+      "excludes": [
+        "math rendering/formatting issues",
+        "bias or censorship complaints"
+      ],
+      "example_ids": [
+        "e1f298e6-be95-45ca-a3ca-ab4b0362deef",
+        "eddd4589-1479-4b15-b542-334181a7b5b2",
+        "624a35fd-e034-4f49-b835-4c85cb3f4c82"
+      ]
+    },
+    {
+      "name": "Math, LaTeX and formula rendering",
+      "definition": "Problems with how mathematical and scientific equations are displayed or solved in the app.",
+      "includes": [
+        "raw LaTeX syntax shown instead of symbols",
+        "unreadable formulas",
+        "weak math problem solving"
+      ],
+      "excludes": [
+        "general wrong answers in other subjects"
+      ],
+      "example_ids": [
+        "c081ccac-226e-44f8-835c-a9a85344a5c8",
+        "4191e322-75e0-488b-8c30-9ffac85a7891",
+        "81cf7543-0ea4-4f65-86cf-52b4f8174a83"
+      ]
+    },
+    {
+      "name": "Censorship, bias and content moderation",
+      "definition": "Complaints that the AI is too restrictive, preachy, politically or culturally biased, or offensive regarding religion, race or sensitive topics.",
+      "includes": [
+        "over-censorship and refusals",
+        "perceived political or ideological bias",
+        "offensive content about religions or groups",
+        "AI lecturing the user"
+      ],
+      "excludes": [
+        "ordinary factual mistakes"
+      ],
+      "example_ids": [
+        "15956774-3381-4417-b2ed-da29e5a413b7",
+        "b24bc655-91c8-4c66-9715-7d96ffa2c938",
+        "445a0bdf-7dc2-453c-894a-6cc6d5e86366"
+      ]
+    },
+    {
+      "name": "Missing features compared with the web version",
+      "definition": "Requests for or complaints about features available on the website but absent in the Android app, or other desired functionality.",
+      "includes": [
+        "edit previous prompt",
+        "search within or across chats",
+        "copy/select text",
+        "stop generation button",
+        "plugins and beta features",
+        "chat organization (folders, delete multiple, favorites)",
+        "camera/image input"
+      ],
+      "excludes": [
+        "image generation requests",
+        "voice feature issues"
+      ],
+      "example_ids": [
+        "11640cc9-f5ef-48c9-89a3-8d828469dd64",
+        "84ef5f4e-ec28-496d-a71d-1e86e3dfbd17",
+        "c002ea0b-f8c5-496b-96f6-58b6b80041c2"
+      ]
+    },
+    {
+      "name": "Image generation and multimodal requests",
+      "definition": "Requests or complaints about creating, showing or understanding images, and other media outputs.",
+      "includes": [
+        "wanting image generation",
+        "image generation locked behind paywall",
+        "poor image results",
+        "wanting images, music or video in answers"
+      ],
+      "excludes": [
+        "camera input to ask questions (feature requests)"
+      ],
+      "example_ids": [
+        "cf6cc6c8-f87c-46fe-ba49-9cb73108fb9c",
+        "a13b860c-30d7-4d2b-b079-64a7565ef27b",
+        "841d52e1-a258-44e2-9ab2-32137366298c"
+      ]
+    },
+    {
+      "name": "Voice chat and read-aloud issues",
+      "definition": "Feedback on voice conversation, speech recognition, text-to-speech and read-aloud behavior, both praise and bugs.",
+      "includes": [
+        "voice not detected",
+        "wrong voice or audio output route",
+        "read-aloud bugs",
+        "voice transcript missing",
+        "praise for voice conversation"
+      ],
+      "excludes": [
+        "general crashes unrelated to voice"
+      ],
+      "example_ids": [
+        "1531b81e-ef8f-4efd-8492-7d0ecad57396",
+        "4e09946f-fa72-40ab-baa2-a5857eae4ce1",
+        "df62a574-608f-41f0-b6eb-4da166b7332a"
+      ]
+    },
+    {
+      "name": "Pricing, subscription and paywall",
+      "definition": "Feedback about cost, ChatGPT Plus value, billing problems, model limits and regional price fairness.",
+      "includes": [
+        "subscription too expensive",
+        "auto-renewal or billing issues",
+        "Plus not showing after purchase",
+        "regional pricing for India",
+        "usage limits on GPT-4o",
+        "features locked behind payment"
+      ],
+      "excludes": [
+        "praise for the free version"
+      ],
+      "example_ids": [
+        "d7e23239-7da7-491e-96fe-f52443a2ee51",
+        "c39eb6c2-67d1-49f5-bb2b-e6fa7b5a0a8a",
+        "4c109e38-4c9e-4fdf-9c57-813df175b8ee"
+      ]
+    },
+    {
+      "name": "Performance, interface and chat history behavior",
+      "definition": "Comments about speed, UI design, scrolling, chat history loading and syncing in the app.",
+      "includes": [
+        "slow scrolling when opening long chats",
+        "chat history not syncing or disappearing",
+        "minimal or awkward UI",
+        "praise for fast or smooth performance",
+        "model defaulting problems"
+      ],
+      "excludes": [
+        "missing features",
+        "crashes"
+      ],
+      "example_ids": [
+        "f9c1be19-f999-4e84-aa2f-721f1cf93585",
+        "cd12e724-f467-4cd6-b5c1-06da8de21759",
+        "8d6aadd3-1146-48f1-99c3-37ca53e7375f"
+      ]
+    },
+    {
+      "name": "Other",
+      "definition": "Reviews that fit no other theme, such as vague, off-topic, or non-substantive comments.",
+      "includes": [
+        "no experience yet",
+        "unclear or incomprehensible text",
+        "off-topic remarks"
+      ],
+      "excludes": [
+        "anything clearly matching another theme"
+      ],
+      "example_ids": [
+        "f645d819-8e67-475d-886d-a55460604969",
+        "3601a908-2cad-4a64-a253-c3beb0421528",
+        "e551edb5-f548-410e-b618-3ea0f393223b"
+      ]
+    }
+  ],
+  "slice_review_ids": [
+    "11640cc9-f5ef-48c9-89a3-8d828469dd64",
+    "13349277-5efa-49e7-a471-53a4764644d3",
+    "35c6a152-fa31-49fe-8ac6-027ddccf6adf",
+    "4920cf0a-164b-4f5d-b63e-03006f764d91",
+    "53125d34-0269-4559-92e4-000b9066bdf3",
+    "62a29586-51f5-42d7-99d8-8e114fa63c94",
+    "68a19f5d-4ca2-48b1-82c1-cedcb42e2736",
+    "848eab9f-c874-4d7c-85a2-831baed1ff70",
+    "95c55117-5325-4c3d-928e-08a7e9b9af1a",
+    "b3ac6587-a53c-4af0-a60f-273f91e5240e",
+    "c081ccac-226e-44f8-835c-a9a85344a5c8",
+    "daa9503e-0f4c-4c06-81a1-52238f47025b",
+    "dc97b7de-e2f0-4c45-a510-a753cafc0635",
+    "f645d819-8e67-475d-886d-a55460604969",
+    "12e46e60-4e2f-409b-970d-25857b68673f",
+    "3305c443-aec8-4bba-a349-96c60cb6f249",
+    "4464e151-eae8-4346-9658-ba44c1fee6a0",
+    "468ceec5-64f0-44f6-86c7-bc30814ce873",
+    "67df565f-d8c7-4c21-b12a-1066583dc4e3",
+    "7cb714cf-c228-456e-a8a9-e50b70cceb4a",
+    "83c4f3ab-0a3d-42d8-a63e-36077fa426f9",
+    "876fc723-54d1-460b-aa2c-e411e6d591f9",
+    "b061495a-1aa8-4bc9-820a-6e741adf11de",
+    "b22ce666-bb13-4551-b156-05a141b214d2",
+    "d57e6fd6-2cee-46a7-8168-d26ae22d906f",
+    "e0fe4f21-f4af-4da2-b798-b27280fbdc1b",
+    "f459eb69-caf4-4822-873d-90a001f92580",
+    "17695fec-d64f-4308-a187-c69181ad21bc",
+    "36ad2947-8641-4877-835e-2cf558d5f612",
+    "419d1cc6-b990-4052-8eab-23b0e751f306",
+    "492a4b1a-800a-47fd-8077-07e246080293",
+    "6fead1e6-c418-4aed-8b17-ce09f60af36a",
+    "7e8e3df5-a4ac-41d9-9c20-4c90b4ab1b7f",
+    "836cde31-60e3-4ab3-8445-d489241fcea4",
+    "86c9a287-315f-43e7-9912-c92dc865d7e0",
+    "b4d322e2-6612-4473-9bb0-816ede118d88",
+    "b541a595-4537-49a4-bd7d-c3d06907f117",
+    "e2a8164a-5e14-4f44-830c-65ceefd8fa2b",
+    "f2551a12-aa7f-4de3-923c-1ca9a120b539",
+    "fd6d92bc-ab94-4d92-bdd7-26786ee8df1d",
+    "14e765e0-f392-451c-84a3-fcb742c11e53",
+    "3cdd19eb-4eb5-4361-b97a-fcdb4b927289",
+    "472a55aa-757b-4ccf-9666-a25f57af6db5",
+    "51ce1576-f0b1-4a75-a614-1165e534ad0a",
+    "9adf1c8c-4bba-4599-9679-2028a1d57e00",
+    "a96a6aa7-0a53-46af-ae0c-d6b754d7459c",
+    "adce2450-e893-4975-b7e0-b0a0f2858ff0",
+    "b223f234-4be5-4e95-a2aa-b5869a13e897",
+    "cf6cc6c8-f87c-46fe-ba49-9cb73108fb9c",
+    "cfeae720-4604-4861-9930-f440c1650491",
+    "eaf86e85-5aa3-484e-becb-2bfd439f53e6",
+    "ef110880-48e5-4fc9-8c0f-88f480a8ebbf",
+    "fc342ada-e6c6-43ad-883d-fe0c6ba1bae1",
+    "22f83875-9409-4151-9b29-eec0a129d1fa",
+    "400534e4-ffa8-4da5-85c2-1d4d1cb1fd5b",
+    "4cfb3e42-dbb4-42cb-ac7a-8e731336887f",
+    "503dc677-478c-4d2e-977c-259bb9572828",
+    "78a459d2-b9be-4c40-b066-44b65bff0181",
+    "8a035f34-48fc-4068-a219-95dc9626f66e",
+    "8f0eefe7-9d38-45b1-aeff-fd31c168a2f4",
+    "98fb1515-e5e5-4977-b309-2f98472088ab",
+    "be1f6213-449e-438a-b5c6-55fab59b1c34",
+    "c1da59d6-96c4-4090-988e-3334bbb77fdc",
+    "e280ad33-f3fe-4d4a-b7a1-e348e253747c",
+    "e7eec712-aebc-4c1e-a240-fe8a96474014",
+    "f9c114c7-63f8-4f01-a28a-421fd2ca1db0",
+    "121b5dec-1959-4210-bd49-4d478cc83e64",
+    "15956774-3381-4417-b2ed-da29e5a413b7",
+    "35766084-e66f-465c-8828-648d2eced003",
+    "45b51c04-0b38-4bfc-a888-c5a316493c3c",
+    "5b3deef9-1f1a-48b1-8c3f-2bb68f8eb855",
+    "64d77169-d377-4a3f-93e4-ec105d206ad5",
+    "6fad3d2c-c0f6-468b-8e59-68498e276bca",
+    "907b8008-9244-4690-a659-39c1df3e6f80",
+    "951b73d8-7e3e-4888-8850-5c4305037211",
+    "b24bc655-91c8-4c66-9715-7d96ffa2c938",
+    "cfa4f76f-f058-43bf-b2b4-3c4dbf825bc8",
+    "e0f58948-ab51-4bc7-bd35-6dc04fdb4d88",
+    "e1ccb7d3-6a9c-4fa8-b3d6-fa0d9c8b19cc",
+    "f9c1be19-f999-4e84-aa2f-721f1cf93585",
+    "218f6219-2500-4ddf-ad35-e9245079b58a",
+    "21e668c5-0138-483b-9e6c-aa850d32fe99",
+    "53c364c4-815f-4560-9b54-be373ae50ef5",
+    "661bb124-2fb6-44c9-8ac4-83386f9ce1fe",
+    "6c1cf0b7-5e1a-46cf-ab6d-46920ea07001",
+    "84ef5f4e-ec28-496d-a71d-1e86e3dfbd17",
+    "9001bc7d-b497-4931-b202-5883084f9d6f",
+    "a13b860c-30d7-4d2b-b079-64a7565ef27b",
+    "b2bf1b4b-6970-4640-86e2-441c4135f846",
+    "cd12e724-f467-4cd6-b5c1-06da8de21759",
+    "e1f298e6-be95-45ca-a3ca-ab4b0362deef",
+    "ecf711c0-13bc-4493-95a6-4b97327a0d78",
+    "eddd4589-1479-4b15-b542-334181a7b5b2",
+    "fb2482ed-7783-4239-ba63-d23bd285f1fa",
+    "10acdc4c-e2c8-4480-aa2b-5807ae357e04",
+    "2b9abfde-8a08-4762-860f-f0cacebb5680",
+    "350506f3-8e7c-4317-8882-a8d52e18e410",
+    "3d29acf1-c4c4-4af6-a33b-0d9ab8c5be64",
+    "6661ab20-ac79-4d47-bb4f-31acec082d67",
+    "79fbee90-0215-4737-864c-dbd513e5ab9b",
+    "80c6507b-a964-4309-b1ea-dfd9bab8ca02",
+    "8381b6ff-fdf0-48f3-b5ca-687971db28d0",
+    "b3adf482-a1d4-4632-8f64-1b2184c6c6bd",
+    "bc3261e9-c5f0-4ba3-a8f5-99daf62efaf6",
+    "d7e23239-7da7-491e-96fe-f52443a2ee51",
+    "ee0cdfc8-a505-4cf1-afd7-c8e8014e0609",
+    "ffc4f3dd-f5dd-4763-af0e-5761515db9a4",
+    "112fc625-c4f3-4aca-a9d8-69bab94e56b7",
+    "3b562bba-de3b-4ff2-bd6c-b055b384640a",
+    "445a0bdf-7dc2-453c-894a-6cc6d5e86366",
+    "5039c7b7-c3eb-4b7f-a341-9fc0e34c5334",
+    "8909cd3f-1e3f-46c8-a6d6-6a52fc81bcfc",
+    "9aee86b2-51ab-4e0d-bf52-2068c2332b48",
+    "a3edae44-2d5a-4d96-9823-65d8b755c0b6",
+    "a871368b-86ca-451c-840c-02cc6583763e",
+    "d04af3af-ab0d-48bd-8a11-d6a5c4a21aff",
+    "d0b1d12a-de2d-4a94-8966-bfe15d5b091e",
+    "e39d3496-78c3-4bf5-8235-693e83f78735",
+    "ef471424-a27f-455c-884e-720e89b04819",
+    "feaecb27-b8b0-47f7-9390-734dc154a2b4",
+    "10da1d85-372d-4063-a923-a56206358170",
+    "3b40ca44-78b3-473f-9499-8c2ad45e3fde",
+    "4191e322-75e0-488b-8c30-9ffac85a7891",
+    "545a2f23-245b-4162-848a-f09d7cc4a543",
+    "81d38e39-08a0-4a63-bd89-ccbd4290e506",
+    "907401f5-0898-4022-8f97-aad0ff868e21",
+    "928ef798-0472-4232-a4d5-1685355d9056",
+    "9793d282-8a24-42bb-aa15-af4d1c0351b0",
+    "bf9ee373-2ca1-4176-9cb4-374f586273f9",
+    "c0cb45e1-f783-46c0-840d-1ca0da4de766",
+    "defc4612-eae8-4a59-8989-76a231435949",
+    "f00d7313-90ce-469b-a178-322ba2ae0b36",
+    "feeefcc6-66cb-49b5-b29e-28a0e8022405",
+    "1531b81e-ef8f-4efd-8492-7d0ecad57396",
+    "166b637f-1a28-450b-9473-a9dd16db3d40",
+    "2c6d22cb-7f7b-475d-aea6-e5662dba0f10",
+    "3a2eb90b-bcad-4e74-99d4-358693edc81b",
+    "462138b2-b77e-4b97-8294-9bdf36df2de8",
+    "624a35fd-e034-4f49-b835-4c85cb3f4c82",
+    "699a0276-dcd0-4642-8fb0-2d5da100b3a7",
+    "8d6aadd3-1146-48f1-99c3-37ca53e7375f",
+    "9433d1c7-cc54-4dba-b66d-547816326682",
+    "b6bc95ba-f87f-4418-8580-c6bcfb2ad908",
+    "dc77c865-f0af-452e-abb9-48d5c8e30b65",
+    "ea78a55c-226b-46ba-b7b6-622403491230",
+    "eb62397a-1a56-48ed-9f93-93cf0294d3e9",
+    "fd23abe4-5484-4d56-b01e-651bf953b27c",
+    "10b81e38-a8da-4bd7-b332-5d073994c318",
+    "12879a7d-1b12-495e-9b81-842bfa2e4123",
+    "3958968d-7306-4ec2-88fb-d15d41d8d26b",
+    "454c16ca-e891-4f91-abef-194c5ed36997",
+    "516f79c7-4e1f-43d8-abce-8e9797ed8608",
+    "6c7944ae-8946-4d7f-8c27-eb99eea0c92a",
+    "77faa7ae-20f6-440b-8a63-17d990edb748",
+    "a63c1291-caf7-4100-ae9b-e5f5b8f2587b",
+    "b67b3132-0ccd-4150-baf8-087cafafc0e7",
+    "c39eb6c2-67d1-49f5-bb2b-e6fa7b5a0a8a",
+    "d891ba6e-597c-4a24-99fe-1a4cdaead0c6",
+    "e6b65695-f280-4128-b22b-fc980b3665ac",
+    "e8cc7b1d-4b4c-49e4-bdac-cfea78bb8149",
+    "fccbee7d-b9d6-41d1-9ad1-56935438e9a6",
+    "16fdc110-2fdd-4253-9386-28910bb2efd6",
+    "361e9d4f-5138-4c7a-b87b-ad9ccd602cb4",
+    "41415add-ac26-4bb4-9e85-2b4124487c3f",
+    "4e09946f-fa72-40ab-baa2-a5857eae4ce1",
+    "841d52e1-a258-44e2-9ab2-32137366298c",
+    "9338aeba-a8e2-4b95-b2da-80e04d46398d",
+    "96adf0c4-e149-4184-b35a-b056ec82fabc",
+    "9a77dcb2-7620-4c87-896b-1aee4dd84a4e",
+    "c002ea0b-f8c5-496b-96f6-58b6b80041c2",
+    "c31932e3-bc74-41e3-b65b-eebf7344f471",
+    "dc63a70c-5234-4e60-8ec9-acadaf1f0c18",
+    "e6f92ac1-e5a5-4657-b659-f6ddc7bb4730",
+    "fbc09566-0124-412e-84ea-cb82641a286d",
+    "15f822ec-542b-47b1-b303-cd7407ca7932",
+    "3601a908-2cad-4a64-a253-c3beb0421528",
+    "4141fde9-a00a-467c-82d5-0914918f9b8e",
+    "4c109e38-4c9e-4fdf-9c57-813df175b8ee",
+    "7bb99000-ebb3-44e2-8c0d-34ba6f9d049b",
+    "86598745-c4cb-4df6-9d20-e960b3dff0b2",
+    "9779a7a0-9013-4954-ba56-5fdbe2058984",
+    "9d6f7ea7-ca49-4895-8437-60c6ac87a44a",
+    "bdf4674d-23b4-41f3-98ff-15cfde675193",
+    "beab8445-22f3-4a7e-8ad4-720b448adc48",
+    "dad4fbbd-8c13-4295-b38f-49f5e59bb87e",
+    "e551edb5-f548-410e-b618-3ea0f393223b",
+    "fa4e076f-8923-44f8-9593-23a7f6830f38",
+    "0eaafdbf-8750-4c0a-b2da-86a73d86ba8b",
+    "2c1636a8-acc2-47d3-9822-198afb4933f4",
+    "3a760dca-1bff-472b-97f7-45b6ef6a3d7a",
+    "3feeb991-f923-4608-b166-276d1985c989",
+    "753fc6ac-256d-4649-b444-278e718ed55d",
+    "81cf7543-0ea4-4f65-86cf-52b4f8174a83",
+    "8caded9b-4720-46d7-ac54-3fd86ed25f5a",
+    "96256fb0-35cc-4656-b5b8-50db12a683c0",
+    "c676eda5-80fd-4912-8e39-02e41d91548a",
+    "c91205dc-b083-42e3-a016-aa074910d9ec",
+    "df62a574-608f-41f0-b6eb-4da166b7332a",
+    "e5ee525a-fa9e-47a7-bf83-42fae92f71cf",
+    "fba32bcf-0d93-4adc-8d62-86d451c39875"
+  ]
+}
