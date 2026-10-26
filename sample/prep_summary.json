@@ -1,0 +1,133 @@
+{
+  "seed": 42,
+  "input_file": "data/ChatGPT_Reviews.csv",
+  "params": {
+    "per_band": 500,
+    "min_words": 15,
+    "latin_threshold": 0.8,
+    "min_english_hits": 2,
+    "english_words": [
+      "a",
+      "and",
+      "app",
+      "but",
+      "can",
+      "don",
+      "for",
+      "good",
+      "i",
+      "in",
+      "is",
+      "it",
+      "my",
+      "not",
+      "of",
+      "the",
+      "this",
+      "to",
+      "very",
+      "with",
+      "you"
+    ]
+  },
+  "cleaning_steps": [
+    {
+      "step": "raw",
+      "rows": 196727,
+      "removed": 0
+    },
+    {
+      "step": "drop_empty",
+      "rows": 196721,
+      "removed": 6
+    },
+    {
+      "step": "drop_duplicate_ids",
+      "rows": 193148,
+      "removed": 3573
+    },
+    {
+      "step": "drop_duplicate_texts",
+      "rows": 120120,
+      "removed": 73028
+    },
+    {
+      "step": "drop_under_15_words",
+      "rows": 31227,
+      "removed": 88893
+    },
+    {
+      "step": "drop_non_latin",
+      "rows": 30855,
+      "removed": 372
+    },
+    {
+      "step": "drop_non_english",
+      "rows": 30308,
+      "removed": 547
+    }
+  ],
+  "cleaned_total": 30308,
+  "cleaned_by_band": {
+    "low": 5059,
+    "mid": 2168,
+    "high": 23081
+  },
+  "cleaned_by_band_quarter": {
+    "low": {
+      "2023Q3": 954,
+      "2023Q4": 776,
+      "2024Q1": 965,
+      "2024Q2": 1465,
+      "2024Q3": 899
+    },
+    "mid": {
+      "2023Q3": 417,
+      "2023Q4": 341,
+      "2024Q1": 409,
+      "2024Q2": 642,
+      "2024Q3": 359
+    },
+    "high": {
+      "2023Q3": 4137,
+      "2023Q4": 3861,
+      "2024Q1": 4621,
+      "2024Q2": 6679,
+      "2024Q3": 3783
+    }
+  },
+  "sample_total": 1500,
+  "sample_by_band": {
+    "low": 500,
+    "mid": 500,
+    "high": 500
+  },
+  "sample_by_band_quarter": {
+    "low": {
+      "2023Q3": 100,
+      "2023Q4": 100,
+      "2024Q1": 100,
+      "2024Q2": 100,
+      "2024Q3": 100
+    },
+    "mid": {
+      "2023Q3": 100,
+      "2023Q4": 100,
+      "2024Q1": 100,
+      "2024Q2": 100,
+      "2024Q3": 100
+    },
+    "high": {
+      "2023Q3": 100,
+      "2023Q4": 100,
+      "2024Q1": 100,
+      "2024Q2": 100,
+      "2024Q3": 100
+    }
+  },
+  "band_weights": {
+    "low": 10.118,
+    "mid": 4.336,
+    "high": 46.162
+  }
+}
