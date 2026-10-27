@@ -6,7 +6,7 @@ Estimates for all 30,308 cleaned reviews, from a stratified sample of 1,500 clas
 
 - A review can have several themes, so theme shares add up to more than 100%.
 - Complaint reviews are those with sentiment negative or mixed. About 13,014 cleaned reviews (1058 sampled).
-- 1–2★ reviews: 5,059 cleaned (500 sampled).
+- 1–2 star reviews: 5,059 cleaned (500 sampled).
 
 ## Ranked complaint themes
 
@@ -40,7 +40,7 @@ general_praise and other appear in the tables but are left out of the complaint 
 
 ## Theme shares
 
-| Theme | All reviews | Complaint reviews | 1–2★ reviews |
+| Theme | All reviews | Complaint reviews | 1–2 star reviews |
 |---|---|---|---|
 | `answer_quality` | 15.8% (13.5%–18.3%) | 30.8% (26.8%–35.2%) | 29.0% (24.8%–33.0%) |
 | `bias_censorship_privacy` | 3.3% (2.5%–4.3%) | 7.1% (5.3%–9.1%) | 11.8% (9.0%–14.8%) |

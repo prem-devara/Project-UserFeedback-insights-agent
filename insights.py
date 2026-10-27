@@ -186,7 +186,7 @@ def write_report(metrics):
         f"- {notes['multi_label']}",
         f"- {notes['complaint']} About {meta['weighted_complaint_total']:,.0f} cleaned reviews "
         f"({meta['n_complaint_sampled']} sampled).",
-        f"- 1–2★ reviews: {meta['weighted_low_band_total']:,.0f} cleaned ({meta['n_low_band_sampled']} sampled).",
+        f"- 1–2 star reviews: {meta['weighted_low_band_total']:,.0f} cleaned ({meta['n_low_band_sampled']} sampled).",
         "",
         "## Ranked complaint themes",
         "",
@@ -204,7 +204,7 @@ def write_report(metrics):
         "",
         "## Theme shares",
         "",
-        "| Theme | All reviews | Complaint reviews | 1–2★ reviews |",
+        "| Theme | All reviews | Complaint reviews | 1–2 star reviews |",
         "|---|---|---|---|",
         *(f"| `{t}` | {fmt(metrics['theme_share_all'][t])} | {fmt(metrics['theme_share_complaint'][t])} "
           f"| {fmt(metrics['theme_share_low_band'][t])} |" for t in themes),

@@ -275,7 +275,7 @@ def theme_section(result, metrics, weight):
         f"| All reviews | {fmt(metrics['theme_share_all'][theme])} |",
         f"| Complaint reviews | {fmt(metrics['theme_share_complaint'][theme])}"
         + (f" — rank {rank} of {len(metrics['complaint_ranking'])}" if rank else "") + " |",
-        f"| 1–2★ reviews | {fmt(metrics['theme_share_low_band'][theme])} |",
+        f"| 1–2 star reviews | {fmt(metrics['theme_share_low_band'][theme])} |",
         "",
         f"Complaint-share trend: {trend_text}.",
         "",
@@ -293,7 +293,7 @@ def theme_section(result, metrics, weight):
         "",
         "**Quotes**",
         "",
-        *(f"> \"{md_cell(q['text'])}\" — {q['stars']}★, `{q['review_id']}`\n" for q in result["quotes"]),
+        *(f"> \"{md_cell(q['text'])}\" — {q['stars']} star, `{q['review_id']}`\n" for q in result["quotes"]),
         "**Likely causes (hypotheses, not verified)**",
         "",
         *(f"- {md_cell(c)}" for c in result["likely_causes"]),
@@ -324,7 +324,7 @@ def write_report(results, metrics, weight):
         "many of its reviews the sub-issues cover.",
         "- **Weighted share of theme** re-weights each sub-issue's reviews by band × quarter (the same "
         "weights as `insights.py`), so it estimates the share across all cleaned reviews in the theme. "
-        "The sample column over-represents 1–3★ reviews.",
+        "The sample column over-represents 1–3 star reviews.",
         "- **Likely causes are hypotheses** drawn from review text, not verified against product data.",
         "- Theme labels come from the classifier; intervals cover sampling error only.",
         "",

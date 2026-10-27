@@ -8,7 +8,7 @@ How to read this:
 
 - **Review ids and quotes are checked in code.** Every id belongs to the theme's input, and every quote appears word for word in its review.
 - **Sub-issue counts are computed in code** from the ids the model listed. They are a lower bound: the model may not list every review that mentions a sub-issue. Each theme shows how many of its reviews the sub-issues cover.
-- **Weighted share of theme** re-weights each sub-issue's reviews by band × quarter (the same weights as `insights.py`), so it estimates the share across all cleaned reviews in the theme. The sample column over-represents 1–3★ reviews.
+- **Weighted share of theme** re-weights each sub-issue's reviews by band × quarter (the same weights as `insights.py`), so it estimates the share across all cleaned reviews in the theme. The sample column over-represents 1–3 star reviews.
 - **Likely causes are hypotheses** drawn from review text, not verified against product data.
 - Theme labels come from the classifier; intervals cover sampling error only.
 
@@ -20,7 +20,7 @@ How to read this:
 |---|---|
 | All reviews | 15.8% (13.5%–18.3%) |
 | Complaint reviews | 30.8% (26.8%–35.2%) — rank 1 of 10 |
-| 1–2★ reviews | 29.0% (24.8%–33.0%) |
+| 1–2 star reviews | 29.0% (24.8%–33.0%) |
 
 Complaint-share trend: no clear change: 36.1% in 2023Q4 → 31.5% in 2024Q2.
 
@@ -40,11 +40,11 @@ Sub-issues cover 60% of this theme's sampled reviews (57% weighted).
 
 **Quotes**
 
-> "I just ask chatgpt a addition question 15947+62851 is then answer me that 78898 please correct this fault" — 1★, `fafed023-c54c-44c4-b445-bf88589cbb07`
+> "I just ask chatgpt a addition question 15947+62851 is then answer me that 78898 please correct this fault" — 1 star, `fafed023-c54c-44c4-b445-bf88589cbb07`
 
-> "I can ask a question tell it no that's not what I'm asking or no that's incorrect and it will double, triple quadruple, etc. down." — 1★, `ff62e102-69a5-4da0-9118-915a131af8fc`
+> "I can ask a question tell it no that's not what I'm asking or no that's incorrect and it will double, triple quadruple, etc. down." — 1 star, `ff62e102-69a5-4da0-9118-915a131af8fc`
 
-> "Still sayings that the president of India Ram Nath" — 4★, `4e506508-47e6-49c5-9d17-a29a3e9ff1d0`
+> "Still sayings that the president of India Ram Nath" — 4 star, `4e506508-47e6-49c5-9d17-a29a3e9ff1d0`
 
 **Likely causes (hypotheses, not verified)**
 
@@ -65,7 +65,7 @@ Sub-issues cover 60% of this theme's sampled reviews (57% weighted).
 |---|---|
 | All reviews | 10.0% (8.5%–11.8%) |
 | Complaint reviews | 20.4% (17.4%–23.7%) — rank 2 of 10 |
-| 1–2★ reviews | 27.3% (23.1%–31.1%) |
+| 1–2 star reviews | 27.3% (23.1%–31.1%) |
 
 Complaint-share trend: no clear change: 19.0% in 2023Q4 → 23.9% in 2024Q2.
 
@@ -85,11 +85,11 @@ Sub-issues cover 72% of this theme's sampled reviews (72% weighted).
 
 **Quotes**
 
-> "Crashes... So you clear the storage, it crashes. As in it opens for just a millisecond and goes back to the home screen." — 2★, `855d06da-50ac-4e4f-887b-9ef5c5cc6eda`
+> "Crashes... So you clear the storage, it crashes. As in it opens for just a millisecond and goes back to the home screen." — 2 star, `855d06da-50ac-4e4f-887b-9ef5c5cc6eda`
 
-> "Does not work due to "network errors", no network is all good according to hmm let me think, everything else lol, it is the app. Same paid account works via web." — 1★, `29fe8aa1-f292-42cc-ac47-d8ba0d410816`
+> "Does not work due to "network errors", no network is all good according to hmm let me think, everything else lol, it is the app. Same paid account works via web." — 1 star, `29fe8aa1-f292-42cc-ac47-d8ba0d410816`
 
-> ""An error has occurred. Please try again later.", with a big exclamation symbol in the middle. No reboots helped. Nor cache wiping." — 1★, `96985ce8-c6c0-429e-8f1b-51ec1688c3ad`
+> ""An error has occurred. Please try again later.", with a big exclamation symbol in the middle. No reboots helped. Nor cache wiping." — 1 star, `96985ce8-c6c0-429e-8f1b-51ec1688c3ad`
 
 **Likely causes (hypotheses, not verified)**
 
@@ -110,7 +110,7 @@ Sub-issues cover 72% of this theme's sampled reviews (72% weighted).
 |---|---|
 | All reviews | 9.1% (7.2%–11.2%) |
 | Complaint reviews | 15.3% (12.3%–18.8%) — rank 4 of 10 |
-| 1–2★ reviews | 17.6% (14.3%–21.2%) |
+| 1–2 star reviews | 17.6% (14.3%–21.2%) |
 
 Complaint-share trend: no clear change: 12.5% in 2023Q4 → 21.1% in 2024Q2.
 
@@ -130,11 +130,11 @@ Sub-issues cover 68% of this theme's sampled reviews (71% weighted).
 
 **Quotes**
 
-> "So you are telling me I'm paying $20 a month for 40 messages every 3 hours? Really? What a scam" — 1★, `e9aaa098-08d3-4924-b219-c2e0606fd62c`
+> "So you are telling me I'm paying $20 a month for 40 messages every 3 hours? Really? What a scam" — 1 star, `e9aaa098-08d3-4924-b219-c2e0606fd62c`
 
-> "chatGPT plus is about a quarter of the salary in Egypt" — 5★, `72dca83c-c019-4a3a-94d9-61d06ba223fc`
+> "chatGPT plus is about a quarter of the salary in Egypt" — 5 star, `72dca83c-c019-4a3a-94d9-61d06ba223fc`
 
-> "I *pay* for GPT4 and I should be able to have it as the default." — 1★, `3b40ca44-78b3-473f-9499-8c2ad45e3fde`
+> "I *pay* for GPT4 and I should be able to have it as the default." — 1 star, `3b40ca44-78b3-473f-9499-8c2ad45e3fde`
 
 **Likely causes (hypotheses, not verified)**
 
@@ -154,7 +154,7 @@ Sub-issues cover 68% of this theme's sampled reviews (71% weighted).
 |---|---|
 | All reviews | 5.4% (4.4%–6.5%) |
 | Complaint reviews | 11.4% (9.4%–13.8%) — rank 6 of 10 |
-| 1–2★ reviews | 22.5% (19.0%–26.1%) |
+| 1–2 star reviews | 22.5% (19.0%–26.1%) |
 
 Complaint-share trend: no clear change: 11.8% in 2023Q4 → 9.1% in 2024Q2.
 
@@ -174,11 +174,11 @@ Sub-issues cover 69% of this theme's sampled reviews (66% weighted).
 
 **Quotes**
 
-> "It seems the app checks for the presence of chrome but uses the default browser, Firefox, you need to remove this check, it's daft" — 3★, `b56e5d22-68f3-4395-98e0-25158d421329`
+> "It seems the app checks for the presence of chrome but uses the default browser, Firefox, you need to remove this check, it's daft" — 3 star, `b56e5d22-68f3-4395-98e0-25158d421329`
 
-> "After multiple try it say your number is linked to maximum account but the fact is I was not able to link it with my any account successfully at first place." — 1★, `1aa445aa-6113-4255-a2b9-d0515aa2008e`
+> "After multiple try it say your number is linked to maximum account but the fact is I was not able to link it with my any account successfully at first place." — 1 star, `1aa445aa-6113-4255-a2b9-d0515aa2008e`
 
-> "Every time when successfully logging in, it just brings me back to the sign-in-menu." — 1★, `85df9517-1079-4a6d-bb2d-35f687716585`
+> "Every time when successfully logging in, it just brings me back to the sign-in-menu." — 1 star, `85df9517-1079-4a6d-bb2d-35f687716585`
 
 **Likely causes (hypotheses, not verified)**
 
@@ -199,7 +199,7 @@ Sub-issues cover 69% of this theme's sampled reviews (66% weighted).
 |---|---|
 | All reviews | 3.3% (2.5%–4.3%) |
 | Complaint reviews | 7.1% (5.3%–9.1%) — rank 10 of 10 |
-| 1–2★ reviews | 11.8% (9.0%–14.8%) |
+| 1–2 star reviews | 11.8% (9.0%–14.8%) |
 
 Complaint-share trend: no clear change: 9.7% in 2023Q4 → 5.4% in 2024Q2.
 
@@ -219,11 +219,11 @@ Sub-issues cover 84% of this theme's sampled reviews (83% weighted).
 
 **Quotes**
 
-> "Why do you need my phone number?? 😡 Explain, I'm very curious as to why you have to invade my personal details." — 1★, `d6ae0c13-f12f-47f9-ad61-f4f4cd605490`
+> "Why do you need my phone number?? 😡 Explain, I'm very curious as to why you have to invade my personal details." — 1 star, `d6ae0c13-f12f-47f9-ad61-f4f4cd605490`
 
-> "I am an adult not a child so theres no need for an A.I. assistant to sensor me" — 3★, `71aa88dc-cdea-48b1-a5ef-6b51b21fadf9`
+> "I am an adult not a child so theres no need for an A.I. assistant to sensor me" — 3 star, `71aa88dc-cdea-48b1-a5ef-6b51b21fadf9`
 
-> "Ask it about Trump and it won't tell you anything. Ask about Kamala and suddenly it knows all of it." — 1★, `739b4cb1-908f-492d-9dec-f56d55a6aa5b`
+> "Ask it about Trump and it won't tell you anything. Ask about Kamala and suddenly it knows all of it." — 1 star, `739b4cb1-908f-492d-9dec-f56d55a6aa5b`
 
 **Likely causes (hypotheses, not verified)**
 
@@ -243,7 +243,7 @@ Sub-issues cover 84% of this theme's sampled reviews (83% weighted).
 |---|---|
 | All reviews | 7.8% (6.0%–9.8%) |
 | Complaint reviews | 13.4% (10.0%–16.9%) — rank 5 of 10 |
-| 1–2★ reviews | 5.6% (3.6%–7.7%) |
+| 1–2 star reviews | 5.6% (3.6%–7.7%) |
 
 Complaint-share trend: no clear change: 11.3% in 2023Q4 → 17.4% in 2024Q2.
 
@@ -263,11 +263,11 @@ Sub-issues cover 99% of this theme's sampled reviews (96% weighted).
 
 **Quotes**
 
-> "all fine and well until image generation is locked behind paid version" — 2★, `a13b860c-30d7-4d2b-b079-64a7565ef27b`
+> "all fine and well until image generation is locked behind paid version" — 2 star, `a13b860c-30d7-4d2b-b079-64a7565ef27b`
 
-> "I can only put in 3 images every 22 hours" — 2★, `d7f872d5-432f-4b63-b3b3-e550518f0a38`
+> "I can only put in 3 images every 22 hours" — 2 star, `d7f872d5-432f-4b63-b3b3-e550518f0a38`
 
-> "the stupid image generator arguing with itself and then saying it can't tell you why it can't generate an image" — 1★, `bf39be83-c9d7-4621-b598-911db894ac21`
+> "the stupid image generator arguing with itself and then saying it can't tell you why it can't generate an image" — 1 star, `bf39be83-c9d7-4621-b598-911db894ac21`
 
 **Likely causes (hypotheses, not verified)**
 
@@ -287,7 +287,7 @@ Sub-issues cover 99% of this theme's sampled reviews (96% weighted).
 |---|---|
 | All reviews | 19.3% (16.5%–22.5%) |
 | Complaint reviews | 7.5% (4.9%–10.5%) — rank 9 of 10 |
-| 1–2★ reviews | 3.0% (1.6%–4.5%) |
+| 1–2 star reviews | 3.0% (1.6%–4.5%) |
 
 Complaint-share trend: no clear change: 10.1% in 2023Q4 → 5.7% in 2024Q2.
 
@@ -307,11 +307,11 @@ Sub-topics cover 35% of this theme's sampled reviews (44% weighted).
 
 **Quotes**
 
-> "since I started using this application, I am able to get my own teacher anytime, anywhere." — 5★, `c1da59d6-96c4-4090-988e-3334bbb77fdc`
+> "since I started using this application, I am able to get my own teacher anytime, anywhere." — 5 star, `c1da59d6-96c4-4090-988e-3334bbb77fdc`
 
-> "it is helpful to learn on how did chatGPT solved it ..to do it next time by your self" — 5★, `f968aac7-d195-4d08-bc5c-987ebd9a7211`
+> "it is helpful to learn on how did chatGPT solved it ..to do it next time by your self" — 5 star, `f968aac7-d195-4d08-bc5c-987ebd9a7211`
 
-> "The voice chat integration is very useful to understand concepts while studying" — 5★, `574739da-cbeb-451a-a441-15351a2f2bea`
+> "The voice chat integration is very useful to understand concepts while studying" — 5 star, `574739da-cbeb-451a-a441-15351a2f2bea`
 
 **Likely causes (hypotheses, not verified)**
 
