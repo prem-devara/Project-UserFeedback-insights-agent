@@ -107,14 +107,14 @@ def complaint_ranking(metrics, names):
 def severity(metrics, names):
     ranked = [r["theme"] for r in metrics["complaint_ranking"]]
     all_share, low_share = metrics["theme_share_all"], metrics["theme_share_low_band"]
-    themes = sorted(ranked, key=lambda t: low_share[t]["est"])  # largest 1–2★ share at the top
+    themes = sorted(ranked, key=lambda t: low_share[t]["est"])  # largest 1–2 star share at the top
     height = 0.36
 
     fig, ax = plt.subplots(figsize=(10, 7))
     fig.subplots_adjust(left=0.40, right=0.95, top=0.85, bottom=0.14)
     series = [
         ("Share of all reviews", all_share, NEUTRAL, height / 2 + 0.02),
-        ("Share of 1–2★ reviews", low_share, ACCENT, -height / 2 - 0.02),
+        ("Share of 1–2 star reviews", low_share, ACCENT, -height / 2 - 0.02),
     ]
     for label, shares, colour, offset in series:
         y = [i + offset for i in range(len(themes))]
@@ -126,8 +126,8 @@ def severity(metrics, names):
     ax.set_yticks(range(len(themes)), [theme_label(t, names) for t in themes])
     style_axes(ax, max(low_share[t]["hi"] for t in themes) + 0.03)
     ax.legend(loc="lower right", frameon=False, fontsize=9)  # same order as the bars in each pair
-    add_title(fig, "Some issues are rare but drive 1–2★ ratings",
-              "Login and crash problems are a small share of all reviews but a large share of 1–2★ reviews")
+    add_title(fig, "Some issues are rare but drive 1–2 star ratings",
+              "Login and crash problems are a small share of all reviews but a large share of 1–2 star reviews")
     add_footer(fig, "† Likely over-counted.")
     path = CHARTS_DIR / "severity.png"
     fig.savefig(path, dpi=200)

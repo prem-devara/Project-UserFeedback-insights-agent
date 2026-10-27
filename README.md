@@ -1,15 +1,15 @@
 # User Feedback Insights Agent
 
-An AI agent that turns thousands of app reviews into product insights: themes, sentiment, weighted shares with uncertainty ranges, and a per-theme synthesis backed by real user quotes. Built and evaluated on public ChatGPT Android app reviews.
+An AI workflow that turns thousands of app reviews into product insights: themes, sentiment, weighted shares with uncertainty ranges, and a per-theme synthesis backed by real user quotes. Built and evaluated on public ChatGPT Android app reviews.
 
 ## Key findings
 
 ChatGPT Android app reviews, July 2023 to August 2024 (30,308 cleaned reviews, estimated from a stratified sample of 1,500).
 
 - **Incorrect, hallucinated or outdated answers are the most common complaint:** 31% of negative and mixed reviews (95% interval 27–35%).
-- **Login problems are rare overall but drive 1–2★ ratings:** 5% of all reviews, 22% of 1–2★ reviews. Crashes (10% → 27%) and bias/censorship (3% → 12%) follow the same pattern.
-- **Study and learning help is the main positive use case:** 19% of all reviews, 3% of 1–2★.
-- **No trend passed the significance check.** Pricing complaints rose from 13% to 21% of complaints between 2023Q4 and 2024Q2, but the intervals overlap, so it is a directional signal only.
+- **Login problems are rare overall but drive 1–2 star ratings:** 5% of all reviews, 22% of 1–2 star reviews. Crashes (10% → 27%) and bias/censorship (3% → 12%) follow the same pattern.
+- **Study and learning help is the main positive use case:** 19% of all reviews, 3% of 1–2 star reviews.
+- **No trend is confirmed.** Pricing complaints rose from 13% to 21% of complaints between 2023Q4 and 2024Q2, but the intervals overlap, so it is a directional signal only.
 
 ![Complaint ranking](insights/charts/complaint_ranking.png)
 
@@ -40,7 +40,7 @@ flowchart TD
 
 | Step | Script | What it does | Done by |
 |---|---|---|---|
-| 1. Prepare | `prepare.py` | • Removes empty, duplicate, very short and non-English reviews (196,727 → 30,308)<br>• Draws 500 reviews per rating band (1–2★, 3★, 4–5★), 100 per quarter, fixed seed<br>• Saves band × quarter weights to scale results back to the real review mix | Python code (no AI) |
+| 1. Prepare | `prepare.py` | • Removes empty, duplicate, very short and non-English reviews (196,727 → 30,308)<br>• Draws 500 reviews per rating band (1–2, 3 and 4–5 stars), 100 per quarter, fixed seed<br>• Saves band × quarter weights to scale results back to the real review mix | Python code (no AI) |
 | 2. Propose themes | `propose_themes.py` | • Sets aside 200 eval reviews first<br>• Proposes 8–15 themes on two non-overlapping slices of 200 reviews<br>• 11 themes came out the same in both runs | Claude Sonnet |
 | 3. Approve themes | `themes/approved_themes.json` | • I merged, folded and renamed themes into a final list of 12, each with definition, includes and excludes | Me |
 | 4. Classify | `classify.py` | • Labels every review with one or more themes and a sentiment, in batches of 20<br>• Validates every ID, theme and sentiment in code | Claude Haiku |
@@ -68,7 +68,7 @@ F1 combines how often the model's theme tags are right and how many of my tags i
 - **Write down every labelling rule.** While labelling, I followed rules that were never added to the classifier's prompt, such as counting praise even when the review also complains. Adding them to the prompt was the biggest single accuracy gain (praise recall 0.68 → 0.80).
 - **One run can mislead.** A macro F1 "drop" after the fix turned out to be the lowest of four runs, not a real decline.
 - **Validation in code catches what review would miss.** It rejected an invented theme ID (`chat_history_placeholder_remove`) and review IDs written in the wrong format, both of which would otherwise have silently corrupted results.
-- **Sampling and weighting change the story.** 76% of raw reviews are 5★ praise. Equal samples per rating band surface complaints; reweighting restores the true proportions. Each sampled 4–5★ review stands for 38–67 real ones.
+- **Sampling and weighting change the story.** 76% of raw reviews are 5-star. Equal samples per rating band surface complaints; reweighting restores the true proportions. Each sampled 4–5 star review stands for 38–67 real ones.
 - **A labelling checkpoint pays off.** Pausing after 20 labels exposed that "missing features" was being used as a catch-all, before the answer key was finished.
 
 ## Limitations
@@ -102,7 +102,7 @@ python prepare.py                           # clean and sample (no API calls)
 python propose_themes.py                    # propose themes (2 Sonnet calls)
 python classify.py --subset eval-labelled   # classify the 100 hand-labelled reviews
 python score_classifier.py                  # score against hand labels
-python classify.py --subset all             # classify all 1,500 reviews
+python classify.py --subset all             # classify all 1,500 reviews (75 Haiku calls)
 python insights.py                          # weighted estimates and intervals
 python synthesize.py                        # per-theme synthesis (7 Sonnet calls)
 python make_charts.py                       # charts
@@ -118,6 +118,7 @@ python make_charts.py                       # charts
 | `outputs/` | Classifier labels, scores and disagreements |
 | `insights/` | Weighted metrics, per-theme synthesis and charts |
 | `BUILD_LOG.md` | Build notes in order, including what went wrong |
+| `*.py`, `requirements.txt` | Pipeline scripts (repo root) and pinned dependencies |
 
 ## Source
 
