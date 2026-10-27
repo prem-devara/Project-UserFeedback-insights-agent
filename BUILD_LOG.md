@@ -133,3 +133,17 @@ Output: [`outputs/classified_all.csv`](outputs/classified_all.csv) and [`outputs
 | neutral | 6 | 31 | 17 | 54 |
 
 `missing_features` counts are probably too high, because the model over-tags "please add X" requests (see Known limitations above).
+
+## Synthesis
+
+Script: [`synthesize.py`](synthesize.py) (`anthropic:claude-sonnet-5-5` via aisuite, same thinking setting and retry-once pattern as `propose_themes.py`). Outputs: [`insights/themes/<theme>.json`](insights/themes/) and [`insights/synthesis.md`](insights/synthesis.md). `python synthesize.py --report-only` rebuilds `synthesis.md` from the saved JSONs without calling the model.
+
+**7 themes.** Six complaint themes (`answer_quality`, `crashes_errors`, `pricing_limits`, `login_account`, `bias_censorship_privacy`, `image_multimodal`) and one positive theme (`education`). For each theme the model read every sampled review tagged with it (ID, stars, text) plus the theme definition, and returned a summary, 3–5 sub-issues with review IDs, 3 verbatim quotes, likely causes (labelled as hypotheses) and one opportunity. `synthesis.md` pairs each theme with its weighted shares and intervals from `insights/metrics.json`.
+
+**Complaint themes use negative and mixed reviews only.** Reviews tagged with a complaint theme can still be positive overall (for example praise for answers), so those were left out: 90–343 reviews per complaint theme. Education keeps all sentiments (178 reviews).
+
+**Quotes and IDs are validated in code.** Every review ID must belong to that theme's input, and every quote must appear word for word in its own review (only whitespace differences are ignored). Quotes must come from 3 different reviews. The code also checks the JSON shape, the sub-issue and quote counts, and the summary and opportunity lengths. A failed check triggers one retry with the reason, then stops the run.
+
+**ID format fix.** The first run failed on `answer_quality`: reviews had zero-padded short IDs (`r001`…), and the model wrote `r39` for `r039`. Validation caught it. The retry then returned the wrong number of sub-issues and the run stopped. Short IDs are now unpadded (`r1`…`r343`), and the error messages report the actual count. No checks were loosened. On the rerun, all 7 themes passed on the first try.
+
+**Sub-issue counts are lower bounds.** Counts and shares are computed in code from the IDs the model listed, never taken from the model. Each sub-issue shows its sample count and a weighted share of the theme, using the same band × quarter weights as `insights.py`. The model doesn't list every review that mentions a sub-issue, so each theme also shows coverage: the share of its reviews that appear under at least one sub-issue. This ranges from 35% (education) to 99% (`image_multimodal`), and is 60% for `answer_quality`.
