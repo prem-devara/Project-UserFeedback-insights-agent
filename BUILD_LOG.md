@@ -95,3 +95,41 @@ Scripts: [`classify.py`](classify.py) (`anthropic:claude-haiku-5-5` via aisuite,
 
 - **Missing features vs UI/UX.** The model confuses features that exist but display or behave badly (e.g. "the upload button is missing", which I labelled as UI) with features that are absent (e.g. "no copy code button", which I labelled as a missing feature). Across the 4 v2 runs, `missing_features` F1 averaged 0.60 and `ui_ux` 0.57.
 - **"Please add X" requests over-tagged as missing features.** The model tags any request as `missing_features`, even when X belongs to another theme: a voice feature (`voice`), Bangla language support (`other`), a newer model (`pricing_limits`).
+
+### Full run (1,500 reviews)
+
+Output: [`outputs/classified_all.csv`](outputs/classified_all.csv) and [`outputs/classified_all_meta.json`](outputs/classified_all_meta.json). This run used the v2 prompt unchanged.
+
+**Two attempts.**
+- **First attempt:** stopped at batch 30 of 75. Haiku returned a theme id that isn't in the approved list ("chat_history_placeholder_remove"), both on the first try and on the retry. Validation rejected it, and nothing was saved.
+  - The two reviews involved mention chat history. One copies ChatGPT's "As an AI language model…" wording. Neither contains anything that looks like instructions to the model.
+- **Second attempt:** no code changes. All 75 batches passed with 0 retries.
+- The meta file records only the second attempt.
+
+**Known limitation.** Completed batches aren't saved before a failure, so a failed run has to restart from batch 1.
+
+**Raw counts by rating band.** These are sample counts: 500 reviews per band, with no band weights applied. A review can have several themes (1.74 on average), so the theme columns add up to more than 500. 28 reviews have only `other`.
+
+| Theme | Low (1–2★) | Mid (3★) | High (4–5★) | Total |
+|---|---:|---:|---:|---:|
+| `general_praise` | 52 | 242 | 453 | 747 |
+| `answer_quality` | 144 | 165 | 57 | 366 |
+| `crashes_errors` | 133 | 94 | 27 | 254 |
+| `missing_features` | 48 | 99 | 48 | 195 |
+| `education` | 15 | 44 | 119 | 178 |
+| `pricing_limits` | 86 | 53 | 35 | 174 |
+| `login_account` | 117 | 21 | 8 | 146 |
+| `ui_ux` | 41 | 65 | 28 | 134 |
+| `voice` | 40 | 55 | 32 | 127 |
+| `image_multimodal` | 28 | 46 | 39 | 113 |
+| `bias_censorship_privacy` | 60 | 27 | 7 | 94 |
+| `other` | 33 | 29 | 26 | 88 |
+
+| Sentiment | Low | Mid | High | Total |
+|---|---:|---:|---:|---:|
+| positive | 6 | 31 | 351 | 388 |
+| mixed | 54 | 280 | 120 | 454 |
+| negative | 434 | 158 | 12 | 604 |
+| neutral | 6 | 31 | 17 | 54 |
+
+`missing_features` counts are probably too high, because the model over-tags "please add X" requests (see Known limitations above).
