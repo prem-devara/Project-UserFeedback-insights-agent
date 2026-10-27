@@ -50,6 +50,7 @@ For the other themes, the approved list uses whichever run's definition was clea
 Answer key: [`eval/eval_labels.xlsx`](eval/eval_labels.xlsx).
 
 - I hand-labelled 100 eval reviews against the approved themes.
+- The sheet holds all 200 held-out eval reviews; I labelled the first 100. The other 100 stay held out and unscored.
 - The labels were then checked against the theme definitions with AI assistance. 49 of 100 rows were corrected, mostly wrong or outdated answers and image requests that had been labelled as missing features.
 - Every change is listed in the Changes sheet of `eval/eval_labels.xlsx`.
 - The "General praise" theme now includes clear praise even when the review also complains, and no longer excludes praise paired with a specific bug or feature request.
