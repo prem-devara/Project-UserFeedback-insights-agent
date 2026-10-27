@@ -7,7 +7,7 @@
     {
       "id": "general_praise",
       "name": "General praise and everyday usefulness",
-      "definition": "Enthusiastic, mostly generic positive reviews describing the app as great, helpful, a game-changer or a daily companion for varied tasks, work and personal use.",
+      "definition": "Clear positive statements about ChatGPT or the app, including praise that appears alongside a complaint or request.",
       "includes": [
         "overall 'best app' praise",
         "helps with work, business, writing, recipes, ideas",

@@ -119,7 +119,11 @@ Themes (use the id in your answer):
 For each review below, choose:
 - "themes": every theme id that applies (at least one). A review can belong to more than one theme.
   Use "{other}" only for content that no other theme covers; it can be combined with other themes.
-- "sentiment": one of {sentiments}. Use "mixed" when the review clearly contains both praise and complaints.
+- "sentiment": one of {sentiments}:
+  - "positive": only praise, or praise plus a wish or request with no complaint.
+  - "negative": only complaints. Negated praise ("not great") is not praise.
+  - "mixed": praise plus a real complaint (something broken, wrong or frustrating).
+  - "neutral": no praise and no complaint, just a request or a fact.
 
 Each review line is: [id] (star rating) review text.
 

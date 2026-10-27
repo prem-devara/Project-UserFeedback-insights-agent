@@ -1,10 +1,12 @@
 """Score classify.py against the hand labels in eval/eval_labels.xlsx.
 
 No LLM calls. Reads the Labels sheet (rows with a sentiment only) and
-outputs/classified_eval-labelled.csv. Writes outputs/scores.json,
-outputs/scores.md and outputs/disagreements.csv.
+outputs/classified_eval-labelled.csv. Writes outputs/scores<suffix>.json,
+outputs/scores<suffix>.md and outputs/disagreements<suffix>.csv, where
+--suffix (e.g. _v2) keeps earlier rounds' reports.
 """
 
+import argparse
 import json
 from pathlib import Path
 
@@ -14,9 +16,7 @@ LABELS_PATH = Path("eval/eval_labels.xlsx")
 THEMES_PATH = Path("themes/approved_themes.json")
 CLASSIFIED_PATH = Path("outputs/classified_eval-labelled.csv")
 META_PATH = Path("outputs/classified_eval-labelled_meta.json")
-SCORES_JSON = Path("outputs/scores.json")
-SCORES_MD = Path("outputs/scores.md")
-DISAGREEMENTS_PATH = Path("outputs/disagreements.csv")
+OUTPUT_DIR = Path("outputs")
 
 SENTIMENTS = ["positive", "negative", "mixed", "neutral"]
 LOW_SUPPORT = 10  # themes with fewer hand labels than this are flagged
@@ -109,7 +109,7 @@ def score(df, themes):
 
 # ---------- Reports ----------
 
-def write_markdown(scores, meta):
+def write_markdown(scores, meta, md_path, disagreements_path):
     s, t = scores["sentiment"], scores["themes"]
     lines = [
         "# Classifier scores (eval-labelled)",
@@ -160,12 +160,12 @@ def write_markdown(scores, meta):
         f"Micro: precision {t['micro_precision']:.2f}, recall {t['micro_recall']:.2f}, "
         f"F1 {t['micro_f1']:.2f}. Macro F1 is the plain average over all {len(t['per_theme'])} themes.",
         "",
-        f"Every disagreement is listed in `{DISAGREEMENTS_PATH}`.",
+        f"Every disagreement is listed in `{disagreements_path}`.",
     ]
-    SCORES_MD.write_text("\n".join(lines) + "\n")
+    md_path.write_text("\n".join(lines) + "\n")
 
 
-def write_disagreements(df, theme_ids):
+def write_disagreements(df, theme_ids, path):
     def ordered(ids):
         return ";".join(t for t in theme_ids if t in ids)
 
@@ -181,13 +181,20 @@ def write_disagreements(df, theme_ids):
         "model_sentiment": differ["model_sentiment"],
         "review": differ["review"],
     })
-    out.to_csv(DISAGREEMENTS_PATH, index=False)
+    out.to_csv(path, index=False)
     return len(out)
 
 
 # ---------- Main ----------
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--suffix", default="", help="added to output names, e.g. _v2")
+    suffix = parser.parse_args().suffix
+    scores_json = OUTPUT_DIR / f"scores{suffix}.json"
+    scores_md = OUTPUT_DIR / f"scores{suffix}.md"
+    disagreements_path = OUTPUT_DIR / f"disagreements{suffix}.csv"
+
     themes = json.loads(THEMES_PATH.read_text())["themes"]
     theme_ids = [t["id"] for t in themes]
     labels = load_labels(theme_ids)
@@ -201,13 +208,13 @@ def main():
     scores = score(df, themes)
     meta = json.loads(META_PATH.read_text())
     scores["classifier"] = meta
-    SCORES_JSON.write_text(json.dumps(scores, indent=2) + "\n")
-    write_markdown(scores, meta)
-    n_differ = write_disagreements(df, theme_ids)
+    scores_json.write_text(json.dumps(scores, indent=2) + "\n")
+    write_markdown(scores, meta, scores_md, disagreements_path)
+    n_differ = write_disagreements(df, theme_ids, disagreements_path)
 
     print(f"Sentiment accuracy {scores['sentiment']['accuracy']:.0%}, "
           f"theme micro F1 {scores['themes']['micro_f1']:.2f}, macro F1 {scores['themes']['macro_f1']:.2f}")
-    print(f"Scores -> {SCORES_JSON}, {SCORES_MD}\n{n_differ} disagreements -> {DISAGREEMENTS_PATH}")
+    print(f"Scores -> {scores_json}, {scores_md}\n{n_differ} disagreements -> {disagreements_path}")
 
 
 if __name__ == "__main__":
