@@ -94,7 +94,7 @@ def complaint_ranking(metrics, names):
 
     ax.set_yticks(list(y), labels)
     style_axes(ax, max(r["hi"] for r in rows) + 0.05)
-    add_title(fig, "Wrong or outdated answers are the most common complaint",
+    add_title(fig, "Incorrect, hallucinated or outdated answers are the most common complaint",
               "Share of complaint reviews (negative or mixed sentiment) that mention each theme")
     add_footer(fig, "† Likely over-counted: the classifier tags any “please add X” request as a "
                     "missing feature. A review can mention several themes.")
