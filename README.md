@@ -65,7 +65,7 @@ F1 combines how often the model's theme tags are right and how many of my tags i
 
 ## What I learned
 
-- **Rules in my head are not rules in the prompt.** The biggest accuracy gain came from writing down labelling rules I had been applying without stating them.
+- **Write down every labelling rule.** While labelling, I followed rules that were never added to the classifier's prompt, such as counting praise even when the review also complains. Adding them to the prompt was the biggest single accuracy gain (praise recall 0.68 → 0.80).
 - **One run can mislead.** A macro F1 "drop" after the fix turned out to be the lowest of four runs, not a real decline.
 - **Validation in code catches what review would miss.** It rejected an invented theme ID (`chat_history_placeholder_remove`) and review IDs written in the wrong format, both of which would otherwise have silently corrupted results.
 - **Sampling and weighting change the story.** 76% of raw reviews are 5★ praise. Equal samples per rating band surface complaints; reweighting restores the true proportions. Each sampled 4–5★ review stands for 38–67 real ones.
