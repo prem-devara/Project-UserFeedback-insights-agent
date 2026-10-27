@@ -56,3 +56,42 @@ Answer key: [`eval/eval_labels.xlsx`](eval/eval_labels.xlsx).
 - The "General praise" theme now includes clear praise even when the review also complains, and no longer excludes praise paired with a specific bug or feature request.
 
 **Limitation.** The answer key was partly AI-corrected, so it is not fully independent of the model being evaluated.
+
+## Classifier
+
+Scripts: [`classify.py`](classify.py) (`anthropic:claude-haiku-5-5` via aisuite, thinking disabled) and [`score_classifier.py`](score_classifier.py) (no LLM calls). Outputs: [`outputs/scores.md`](outputs/scores.md) (baseline), [`outputs/scores_v2.md`](outputs/scores_v2.md), [`outputs/scores_v2_runs.md`](outputs/scores_v2_runs.md), and a `disagreements*.csv` for each scored run.
+
+**Setup.** Reviews go to the model in batches of 20, shuffled with seed 42 so each batch mixes rating bands. Each batch carries the full approved theme list (definition, includes, excludes). For every review the model returns one or more theme ids and a sentiment (positive, negative, mixed or neutral). "Other" can be combined with other themes, but only for content no other theme covers. The code checks that every review in the batch comes back exactly once with valid theme ids and a valid sentiment, and retries the batch once if not. Scoring compares the model with the 100 hand-labelled eval reviews: sentiment accuracy and a confusion table, per-theme precision, recall and F1, micro and macro F1, and how often the theme sets match exactly. Themes with fewer than 10 hand labels are marked low support (`ui_ux`, `other`, `image_multimodal`, `voice`, `login_account`).
+
+**Fixes (round 1).** The baseline disagreements came mostly from rules that I applied when labelling but that were missing from the prompt:
+
+1. **Praise definition.** The hand labels count praise even when the same review complains, but the theme definition still described "enthusiastic, mostly generic positive reviews". The model tagged praise on 36 reviews against my 50. The `general_praise` definition now reads: "Clear positive statements about ChatGPT or the app, including praise that appears alongside a complaint or request."
+2. **Sentiment rules.** The prompt had only a one-line description of "mixed". I added the rules I labelled by:
+   - **positive:** praise, or praise plus a wish, with no complaint
+   - **negative:** complaints only; negated praise ("not great") is not praise
+   - **mixed:** praise plus a real complaint
+   - **neutral:** neither praise nor complaint
+
+   Baseline errors were mostly positive reviews called mixed (7) and mixed reviews called negative (6).
+
+| Metric | Baseline (1 run) | v2 (run 1) | v2 mean of 4 runs (min–max) |
+|---|---:|---:|---:|
+| Sentiment accuracy | 81% | 83% | 81% (79–83%) |
+| Theme micro F1 | 0.78 | 0.78 | 0.79 (0.78–0.80) |
+| Theme macro F1 | 0.77 | 0.75 | 0.77 (0.75–0.78) |
+| Theme sets match exactly | 47% | 50% | 50% (49–52%) |
+| `general_praise` F1 (recall) | 0.79 (0.68) | 0.85 (0.80) | 0.84 (0.81–0.86) |
+| `missing_features` F1 | 0.57 | 0.53 | 0.60 (0.53–0.62) |
+| `ui_ux` F1 | 0.53 | 0.59 | 0.57 (0.50–0.59) |
+
+**Run-to-run spread.** The model doesn't give identical answers on every run. I ran the unchanged v2 prompt 4 times. Sentiment accuracy ranged from 79% to 83%, micro F1 from 0.78 to 0.80 and macro F1 from 0.75 to 0.78. Low-support themes move most, because one review changes their F1 by a lot.
+- **Praise:** the gain is the only change clearly larger than this spread. F1 was 0.79 in the baseline and 0.81–0.86 across the v2 runs.
+- **Sentiment:** the baseline's 81% equals the v2 mean, so I can't say whether the sentiment rules helped overall. They did reduce positive reviews called mixed (7 → 4 in run 1).
+- **Caveat:** the baseline was run only once, so its own spread is unknown.
+
+**No further prompt tuning.** The same 100 reviews are both the answer key and the only scored set. Tuning the prompt to each remaining disagreement would fit it to these labels and overstate accuracy. I stopped after round 1, which only added rules that were already part of how I labelled. The 100 unlabelled eval reviews are still held out.
+
+**Known limitations.**
+
+- **Missing features vs UI/UX.** The model confuses features that exist but display or behave badly (e.g. "the upload button is missing", which I labelled as UI) with features that are absent (e.g. "no copy code button", which I labelled as a missing feature). Across the 4 v2 runs, `missing_features` F1 averaged 0.60 and `ui_ux` 0.57.
+- **"Please add X" requests over-tagged as missing features.** The model tags any request as `missing_features`, even when X belongs to another theme: a voice feature (`voice`), Bangla language support (`other`), a newer model (`pricing_limits`).

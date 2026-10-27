@@ -1,0 +1,14 @@
+{
+  "model": "anthropic:claude-haiku-5-5",
+  "thinking": {
+    "type": "disabled"
+  },
+  "created_at": "2026-10-27T04:41:01+00:00",
+  "subset": "eval-labelled",
+  "n_reviews": 100,
+  "batch_size": 20,
+  "batch_count": 5,
+  "retried_batches": 0,
+  "shuffle_seed": 42,
+  "themes_source": "themes/approved_themes.json"
+}
