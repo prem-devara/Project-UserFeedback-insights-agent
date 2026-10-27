@@ -16,11 +16,11 @@
         "praise for fast or smooth responses",
         "convenience of having the app on the phone",
         "free version being generous or no ads",
-        "thanks to developers"
+        "thanks to developers",
+        "clear praise even when the review also complains"
       ],
       "excludes": [
-        "study or homework-specific praise",
-        "praise paired with a specific bug or feature request"
+        "study or homework-specific praise"
       ],
       "example_ids": [
         "53125d34-0269-4559-92e4-000b9066bdf3",

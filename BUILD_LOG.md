@@ -44,3 +44,14 @@ Script: [`propose_themes.py`](propose_themes.py) (`anthropic:claude-sonnet-5-5` 
 4. **Kept "UI, UX and accessibility" separate from performance.** Run 2 mixed speed, design and chat history into one theme. Chat history behavior (not loading, syncing, disappearing) moved to UI. Slowness and lag moved to "Crashes, errors and connectivity", because they're reliability problems rather than design problems.
 
 For the other themes, the approved list uses whichever run's definition was clearer and keeps both runs' includes/excludes. Each theme records `source_runs` and the original `source_themes` it came from.
+
+## Hand labels
+
+Answer key: [`eval/eval_labels.xlsx`](eval/eval_labels.xlsx).
+
+- I hand-labelled 100 eval reviews against the approved themes.
+- The labels were then checked against the theme definitions with AI assistance. 49 of 100 rows were corrected, mostly wrong or outdated answers and image requests that had been labelled as missing features.
+- Every change is listed in the Changes sheet of `eval/eval_labels.xlsx`.
+- The "General praise" theme now includes clear praise even when the review also complains, and no longer excludes praise paired with a specific bug or feature request.
+
+**Limitation.** The answer key was partly AI-corrected, so it is not fully independent of the model being evaluated.
