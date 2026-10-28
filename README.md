@@ -1,10 +1,10 @@
 # User Feedback Insights Agent
 
-An AI workflow that turns thousands of app reviews into product insights: themes, sentiment, weighted shares with uncertainty ranges, and a per-theme synthesis backed by real user quotes. Built and evaluated on public ChatGPT Android app reviews.
+An AI agent that reads thousands of ChatGPT app reviews and reports what users complain about most, how common each complaint is, and real quotes for each one. Built and evaluated on public ChatGPT Android app reviews.
 
 ## Key findings
 
-ChatGPT Android app reviews, July 2023 to August 2024 (30,308 cleaned reviews, estimated from a stratified sample of 1,500).
+ChatGPT Android app reviews, July 2023 to August 2024 (30,308 cleaned reviews, based on 1,500 reviews sampled evenly across star ratings).
 
 - **Incorrect, hallucinated or outdated answers are the most common complaint:** 31% of negative and mixed reviews (95% interval 27–35%).
 - **Login problems are rare overall but drive 1–2 star ratings:** 5% of all reviews, 22% of 1–2 star reviews. Crashes (10% → 27%) and bias/censorship (3% → 12%) follow the same pattern.
@@ -15,7 +15,7 @@ ChatGPT Android app reviews, July 2023 to August 2024 (30,308 cleaned reviews, e
 
 ![Severity](insights/charts/severity.png)
 
-Full per-theme synthesis, with sub-issues, quotes and opportunities: [insights/synthesis.md](insights/synthesis.md)
+Full report for each top complaint, with sub-issues, user quotes and opportunities: [insights/synthesis.md](insights/synthesis.md)
 
 ## Workflow
 
@@ -23,13 +23,13 @@ Full per-theme synthesis, with sub-issues, quotes and opportunities: [insights/s
 %%{init: {"flowchart": {"wrappingWidth": 300}}}%%
 flowchart TD
     RAW["196,727 raw reviews"] --> PREP["Clean and sample<br/>1,500 reviews, 500 per rating band"]
-    PREP --> HOLD["Hold out 200 for evaluation<br/>100 hand-labelled"]
+    PREP --> HOLD["Set aside 200 for evaluation<br/>100 hand-labelled"]
     PREP --> PROP["Propose themes on 2 separate slices<br/>using Claude Sonnet"]
     PROP --> APPROVE["Human approves 12 themes"]
     APPROVE --> CLASS["Classify all 1,500 reviews<br/>themes + sentiment<br/>using Claude Haiku"]
     HOLD --> SCORE["Score classifier vs hand labels"]
     CLASS --> SCORE
-    CLASS --> WEIGHT["Reweight to real review mix<br/>bootstrap 95% intervals, quarterly trends"]
+    CLASS --> WEIGHT["Reweight to real review mix<br/>95% confidence ranges, quarterly trends"]
     WEIGHT --> SYN["Synthesise each top theme<br/>using Claude Sonnet<br/>quotes checked word for word in code"]
     SYN --> REPORT["Charts and report"]
 ```
@@ -59,7 +59,7 @@ flowchart TD
 
 F1 combines how often the model's theme tags are right and how many of my tags it found (1.0 = perfect agreement). Micro F1 pools all theme tags, so common themes count more; macro F1 averages the 12 themes equally.
 
-- **Answer key:** 100 eval reviews hand-labelled by me, held out from theme proposal. The labels were then checked against the written theme definitions with AI assistance; 49 rows were corrected and every change is logged.
+- **Answer key:** 100 eval reviews hand-labelled by me, set aside before themes were proposed. The labels were then checked against the written theme definitions with AI assistance; 49 rows were corrected and every change is logged.
 - **One round of prompt fixes only.** Two rules existed in my labelling but not in the prompt (praise alongside a complaint still counts as praise; sentiment rules). I added them once and stopped, to avoid tuning the prompt to the answer key.
 - **Noise measured before claiming improvement.** Across 4 runs, only the praise fix made a real difference. Every other before/after change was within run-to-run variation.
 
